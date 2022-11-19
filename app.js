@@ -54,14 +54,14 @@ app.use((req, res, next) => {
 })
 
 // 設定路由
-app.get('/', (req, res) => {
-  return Todo.findAll({
-    raw: true,
-    nest: true
-  })
-    .then((todos) => { return res.render('index', { todos: todos }) })
-    .catch((error) => { return res.status(422).json(error) })
-})
+// app.get('/', (req, res) => {
+//   return Todo.findAll({
+//     raw: true,
+//     nest: true
+//   })
+//     .then((todos) => { return res.render('index', { todos: todos }) })
+//     .catch((error) => { return res.status(422).json(error) })
+// })
 
 app.get('/todos/:id', (req, res) => {
   const id = req.params.id
