@@ -10,7 +10,7 @@ const User = db.User
 
 // 定義首頁路由
 router.get('/', (req, res) => {
-  const UserId = req.user._id   // 變數設定
+  const UserId = req.user.id   // 變數設定
   User.findByPk(UserId)
     .then(user => {
       if (!user) throw new Error('user not found')

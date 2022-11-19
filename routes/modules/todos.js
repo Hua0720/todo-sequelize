@@ -13,7 +13,7 @@ router.get('/new', (req, res) => {
 
 // 新增功能
 router.post('/', (req, res) => {
-  const UserId = req.user._id
+  const UserId = req.user.id
   const name = req.body.name
   return Todo.create({ name, UserId })
     .then(() => res.redirect('/'))
@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
 
 // 查看特定一筆資料
 router.get('/:id', (req, res) => {
-  const UserId = req.user._id
+  const UserId = req.user.id
   const id = req.params.id
   return Todo.findOne({ where: { id, UserId } })
     .then(todo => res.render('detail', { todo: todo.toJSON() }))
@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
 
 // 編輯頁面
 router.get('/:id/edit', (req, res) => {
-  const UserId = req.user._id
+  const UserId = req.user.id
   const id = req.params.id
   return Todo.findOne({ where: { id, UserId } })
     .then(todo => res.render('edit', { todo: todo.toJSON() }))
@@ -40,7 +40,7 @@ router.get('/:id/edit', (req, res) => {
 
 // 修改的部分
 router.put('/:id', (req, res) => {
-  const UserId = req.user._id
+  const UserId = req.user.id
   const id = req.params.id
   const { name, isDone } = req.body
   return Todo.findOne({ where: { id, UserId } })
@@ -55,10 +55,10 @@ router.put('/:id', (req, res) => {
 
 // 刪除頁面
 router.delete('/:id', (req, res) => {
-  const UserId = req.user._id
+  const UserId = req.user.id
   const id = req.params.id
   return Todo.findOne({ where: { id, UserId } })
-    .then(todo => todo.remove())
+    .then(todo => todo.destroy())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
