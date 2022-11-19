@@ -10,6 +10,8 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
+// 載入 routes位置
+const routes = require('./routes')
 // 載入 Passport 設定檔
 const usePassport = require('./config/passport')
 
